@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sn="$(realpath "$0")"
+dn="$(dirname "$sn")"
+
+chmod +x "$dn/__python"
+chmod +x "$dn/le-http-a2"
+
+# venv is the only built-in virtual environment maker
+rm -rf "$dn/pyenv"
+python3 -m venv "$dn/pyenv"
+
+"$dn/__python" -m pip install --force-reinstall --no-cache -r "$dn/requirements.txt"
+
+rm /usr/bin/le-http-a2
+ln -s "$dn/le-http-a2" /usr/bin/le-http-a2
