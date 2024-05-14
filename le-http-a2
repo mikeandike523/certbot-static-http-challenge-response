@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sn=$(realpath "$0")
-dn=$(dirname "$sn")
-"$dn/__python" "$dn/main.py" "$@"

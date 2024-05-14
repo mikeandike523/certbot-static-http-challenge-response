@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sn="$(realpath $0)"
-dn="$(dirname "$sn")"
-"$dn/pyenv/bin/python3" "$@"

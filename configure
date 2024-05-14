@@ -1,16 +1,12 @@
 #!/bin/bash
 
-sn="$(realpath "$0")"
-dn="$(dirname "$sn")"
+dn="$(dirname "$(realpath "$0")")"
 
-chmod +x "$dn/__python"
-chmod +x "$dn/le-http-a2"
+sudo apt install -y certbot
 
-# venv is the only built-in virtual environment maker
-rm -rf "$dn/pyenv"
-python3 -m venv "$dn/pyenv"
+sudo chmod +x "$dn/auth.sh"
+sudo chmod +x "$dn/cleanup.sh"
+sudo chmod +x "$dn/cshcr"
 
-"$dn/__python" -m pip install --force-reinstall --no-cache -r "$dn/requirements.txt"
-
-rm /usr/bin/le-http-a2
-ln -s "$dn/le-http-a2" /usr/bin/le-http-a2
+sudo rm -f /usr/local/bin/cshcr
+sudo ln -s "$dn/cshcr" /usr/local/bin/cshcr

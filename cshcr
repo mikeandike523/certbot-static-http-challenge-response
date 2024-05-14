@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dn="$(dirname "$(realpath "$0")")"
+
+if [ $# -ne 1 ]; then
+    echo "Usage: cshcr <DOMAIN NAME>"
+    exit 1
+fi
+
+domain_name="$1"
+
+sudo certbot certonly --manual --preferred-challenges="http" --manual-auth-hook="$dn/auth.sh" --manual-cleanup-hook="$dn/cleanup.sh" -d "$domain_name"
